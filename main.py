@@ -1,0 +1,20 @@
+#appcfg.py -A enduring-grid-600 update appengine-try-python
+from flask import Flask, render_template, request
+import summarize
+app = Flask(__name__)
+
+# main index
+@app.route("/")
+def index():
+	return render_template("index.html")
+
+# cobrand session token
+@app.route("/Add", methods=["GET","POST"])
+def cobrand_session_token():
+	a = request.form.get("value_a")
+	#sum1=int(a)+int(b)
+        sum1 =summarize.main1(a)
+	return render_template("Add.html", a=a,sum1=sum1)
+
+if __name__ == "__main__":
+	app.run(debug=True)

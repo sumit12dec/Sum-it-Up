@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+	{% block body %}
+		<!-- Header and Nav -->
+		<div class="row">
+			<div class="large-3 columns">
+				<h1><img src="" /></h1>
+			</div>
+		</div>
+		<!-- End Header and Nav -->
+
+		<!-- Main Content Section -->
+		<!-- This has been source ordered to come first in the markup (and on small devices) but to be to the right of the nav on larger screens -->
+		<div class="row">
+			<div class="large-9 push-3 columns">
+				<h3>Sum-it-Up App</h3>
+
+				<br />
+				<br />
+
+				<form action="/" method="POST">
+					<div class="row">
+						<div class="large-12 columns">
+							<div class="row">
+								<div class="large-4 columns">
+									<label for="left-label" class="left inline">Value of a</label>
+								</div>
+								<div class="large-8 columns">
+									<input type="text" id="left-label" name="a" placeholder= {{ a }}>
+								</div>
+							</div>
+
+
+							<div class="row">
+								<div class="large-4 columns">
+									<button class="button tiny radius success" type="submit" name="add">Sum-it-Up</button>
+								</div>
+								<div class="large-8 columns">
+									<textarea class="cobsession_token" name="sum">{{ sum1 }}</textarea>
+<script type="text/javascript">alert(document.getElementsByName("sum")[0].value);</script>
+								</div>
+							</div>
+
+							<br />
+
+							<hr>
+							
+							<br />
+
+							<div class="row">
+								<div class="large-12 columns">
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+
+			<!-- Nav Sidebar -->
+			<!-- This is source ordered to be pulled to the left on larger screens -->
+			<div class="large-3 pull-9 columns">
+				<ul class="side-nav">
+					<li><a href="/">Home</a></li>
+					<li class="active"><a href="/">Addition</a></li>
+				</ul>
+			</div>
+		</div>
+	{% endblock %}
+</html>
