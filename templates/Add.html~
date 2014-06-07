@@ -36,7 +36,7 @@
 									<button class="button tiny radius success" type="submit" name="add">Sum-it-Up</button>
 								</div>
 								<div class="large-8 columns">
-									<textarea class="cobsession_token" name="sum">{{ sum1 }}</textarea>
+									<textarea style="width: 550px; height: 300px;" class="cobsession_token" name="sum">{{ request }}</textarea>
 <script type="text/javascript">alert(document.getElementsByName("sum")[0].value);</script>
 								</div>
 							</div>

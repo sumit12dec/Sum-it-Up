@@ -18,5 +18,15 @@ def cobrand_session_token():
         sum1 =summarize.main1(a)
 	return render_template("Add.html", a=a,sum1=sum1)
 
+
+@app.route("/API", methods=["GET","POST"])
+def api_call():
+	passed_url = request.args.get('url')
+	if "http" not in passed_url:
+		passed_url="http://"+passed_url
+	#sum1=int(a)+int(b)
+        sum1 =summarize.main1(passed_url)
+	return sum1
+
 if __name__ == "__main__":
 	app.run(debug=True)
