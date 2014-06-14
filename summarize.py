@@ -103,9 +103,7 @@ def summarize_page(url):
     summaries = [re.sub('\s+', ' ', summary.strip())
                  for summary in summaries
                  if filter(lambda c: c.lower() in string.letters, summary)]
-    v =  Summary(url, b, html.title.text if html.title else None, summaries)
-    return v.cal()
+    return  Summary(url, b, html.title.text if html.title else None, summaries)
 
 def main1(sent_url):
-	from flask import Flask, render_template, request, jsonify, make_response
-        return  jsonify(results = summarize_page(sent_url))
+        return  u"%s" % summarize_page(sent_url)
