@@ -1,5 +1,5 @@
 #appcfg.py -A enduring-grid-600 update appengine-try-python
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 import summarize
 app = Flask(__name__)
 

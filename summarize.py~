@@ -1,9 +1,9 @@
 #!/usr/bin/env python
-
+# -*- coding: utf-8 -*-
 import nltk
 from nltk.corpus import stopwords
 import string
-
+from flask import Flask, render_template, request, jsonify
 stop_words = stopwords.words('english')
 
 # The low end of shared words to consider
@@ -70,7 +70,7 @@ class Summary(object):
         self.article_html = article_html
         self.title = title
         self.summaries = summaries
-
+    
     def __repr__(self):
         return 'Summary({0}, {1}, {2}, {3})'.format(
             repr(self.url), repr(self.article_html), repr(self.title), repr(self.summaries)
@@ -78,7 +78,18 @@ class Summary(object):
 
     def __str__(self):
         return u"{0} - {1}\n\n{2}".format(self.title, self.url, '\n'.join(self.summaries))
-
+    
+    def cal(self):
+        import logging,json
+        #return u"{0} - {1}\n\n{2}".format(self.title, self.url, '\n'.join(self.summaries))
+#	self.res[0]['summary'] = self.res[0]['summary'].encode('utf-8')
+	#print self.res[0]['summary']
+        ss = "\n".join(self.summaries)
+        res = {'url': self.url, 'title':self.title, 'summary':str(ss)}
+        json.dumps(res)
+        #res['summary'] = res['summary'].encode('utf8')
+        logging.warning(ss)
+        return res
 
 def summarize_page(url):
     import bs4
@@ -92,7 +103,9 @@ def summarize_page(url):
     summaries = [re.sub('\s+', ' ', summary.strip())
                  for summary in summaries
                  if filter(lambda c: c.lower() in string.letters, summary)]
-    return Summary(url, b, html.title.text if html.title else None, summaries)
+    v =  Summary(url, b, html.title.text if html.title else None, summaries)
+    return v.cal()
 
 def main1(sent_url):
-        return (u"%s" % summarize_page(sent_url)).encode('utf-8')
+	from flask import Flask, render_template, request, jsonify, make_response
+        return  jsonify(results = summarize_page(sent_url))
