@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import nltk
 from nltk.corpus import stopwords
+import logging,json
 import string
 from flask import Flask, render_template, request, jsonify
 stop_words = stopwords.words('english')
@@ -44,6 +45,7 @@ def compute_score(sent, sents):
     """Computes the average score of sent vs the other sentences (the result of
     sent vs itself isn't counted because it's 1, and that's above
     UPPER_BOUND)"""
+    #logging.warning(sent)
     if not len(sent):
         return 0
     return sum(compare_sents_bounded(sent, sent1) for sent1 in sents) / float(len(sents))
@@ -51,17 +53,31 @@ def compute_score(sent, sents):
 
 def summarize_block(block):
     """Return the sentence that best summarizes block"""
+    #logging.warning(block)
+    import heapq
     if not block:
         return None
     sents = nltk.sent_tokenize(block)
+    #logging.warning(sents)
     word_sents = map(nltk.word_tokenize, sents)
+    #logging.warning(word_sents)
     d = dict((compute_score(word_sent, word_sents), sent) for sent, word_sent in zip(sents, word_sents))
-    return d[max(d.keys())]
-
+    main_sum = d[d.keys()[d.values().index(sents[0])]]
+    logging.warning(main_sum)
+    key = d.keys()[d.values().index(sents[0])]+2
+    d[key]=main_sum
+    logging.warning(d.keys()[d.values().index(sents[0])])
+    logging.warning("-------------------------")
+    #logging.warning(d)
+    if len(d)>=2:
+    	two_maxs=heapq.nlargest(2,d.keys())
+    	return d[two_maxs[0]]+d[two_maxs[1]]
+    else:
+    	return d[max(d.keys())]
 
 def find_likely_body(b):
     """Find the tag with the most directly-descended <p> tags"""
-    return max(b.find_all(), key=lambda t: len(t.find_all('p', recursive=False)))
+    return max(b.find_all(), key=lambda t: len(t.find_all('p',recursive=False)))
 
 
 class Summary(object):
@@ -77,10 +93,10 @@ class Summary(object):
         )
 
     def __str__(self):
-        return u"{0} - {1}\n\n{2}".format(self.title, self.url, '\n'.join(self.summaries))
+        return u"Title: {0} <br/>Url: <a href={1}>{1}</a><br/>Summed Up:<br/>{2}".format(self.title, self.url, '\n'.join(self.summaries))
     
     def cal(self):
-        import logging,json
+
         #return u"{0} - {1}\n\n{2}".format(self.title, self.url, '\n'.join(self.summaries))
 #	self.res[0]['summary'] = self.res[0]['summary'].encode('utf-8')
 	#print self.res[0]['summary']
@@ -88,7 +104,7 @@ class Summary(object):
         res = {'url': self.url, 'title':self.title, 'summary':ss.encode('utf-8')}
         json.dumps(res)
         #res['summary'] = res['summary'].encode('utf8')
-        logging.warning(ss)
+        #logging.warning(ss)
         return res
 
 def summarize_page(url):
@@ -97,8 +113,14 @@ def summarize_page(url):
     import requests
 
     html = bs4.BeautifulSoup(requests.get(url).text)
+    #logging.warning(html)
     b = find_likely_body(html)
+    #logging.warning(b)
     summaries = map(lambda p: re.sub('\s+', ' ', summarize_block(p.text) or '').strip(), b.find_all('p'))
+    #logging.warning(html.find_all('div','Normal'))
+    if "timesofindia" in url :
+        summaries = map(lambda div: re.sub('\s+', ' ', summarize_block(div.text) or '').strip(), html.find_all('div','Normal'))
+    #logging.warning(b.find_all('div','Normal'))
     summaries = sorted(set(summaries), key=summaries.index)  # deduplicate and preserve order
     summaries = [re.sub('\s+', ' ', summary.strip())
                  for summary in summaries
@@ -106,4 +128,4 @@ def summarize_page(url):
     return  Summary(url, b, html.title.text if html.title else None, summaries)
 
 def main1(sent_url):
-        return  u"%s" % summarize_page(sent_url).encode('utf-8')
+        return  u"%s" % summarize_page(sent_url)
