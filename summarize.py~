@@ -93,7 +93,7 @@ class Summary(object):
         )
 
     def __str__(self):
-        return u"Title: {0} <br/>Url: <a style='color:red;' href={1}>{1}</a><br/><br/>Summed Up:<br/>{2}".format(self.title, self.url, '\n'.join(self.summaries))
+        return u"Title: {0} <br/>Url: <a style='color:red;' href={1}>{1}</a><br/><br/>Summed Up:<br/>{2}<p style='float:right;color:rgb(86, 197, 51);font-size:11px;'><br/>Report:-<a href='mailto:report@sumitraj.in'>report@sumitraj.in</a></p>".format(self.title, self.url, '\n'.join(self.summaries))
     
     def cal(self):
 
@@ -126,7 +126,7 @@ def summarize_page(url):
                  for summary in summaries
                  if filter(lambda c: c.lower() in string.letters, summary)]
     print(summaries)
-    return  Summary(url, b, html.title.text if html.title else None, summaries[:2])
+    return  Summary(url, b, html.title.text if html.title else None, summaries[:1])
 
 def main1(sent_url):
         return  u"%s" % summarize_page(sent_url)
