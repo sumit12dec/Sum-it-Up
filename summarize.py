@@ -93,7 +93,7 @@ class Summary(object):
         )
 
     def __str__(self):
-        return u"Title: {0} <br/>Url: <a style='color:red;' href={1}>{1}</a><br/><br/>Summed Up:<br/>{2}<br/>".format(self.title, self.url, '\n'.join(self.summaries))
+        return u"Title: {0} <br/>Url: <a style='color:red;' href={1}>{1}</a><br/><br/>Summed Up:<br/>{2}".format(self.title, self.url, '\n'.join(self.summaries))
     
     def cal(self):
 
