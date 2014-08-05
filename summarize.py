@@ -63,7 +63,7 @@ def summarize_block(block):
     #logging.warning(word_sents)
     d = dict((compute_score(word_sent, word_sents), sent) for sent, word_sent in zip(sents, word_sents))
     main_sum = d[d.keys()[d.values().index(sents[0])]]
-    logging.warning(main_sum)
+    #logging.warning(main_sum)
     key = d.keys()[d.values().index(sents[0])]+2
     d[key]=main_sum
     #logging.warning(d.keys()[d.values().index(sents[0])])
@@ -71,7 +71,7 @@ def summarize_block(block):
     #logging.warning(d)
     if len(d)>=2:
     	two_maxs=heapq.nlargest(2,d.keys())
-    	return d[two_maxs[0]]+d[two_maxs[1]]
+    	return d[two_maxs[0]]
     else:
     	return d[max(d.keys())]
 
