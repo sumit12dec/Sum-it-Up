@@ -12,55 +12,28 @@
 		<!-- Main Content Section -->
 		<!-- This has been source ordered to come first in the markup (and on small devices) but to be to the right of the nav on larger screens -->
 		<div class="row">
-			<div class="large-9 push-3 columns">
-				<h3>Sum-it-Up App</h3>
-
+			<div class="">
+				<h3>Sum-Up : The Summarizer</h3>
+			
 				<br />
+				<h5>Abstract:</h5>
 				<br />
 
-				<form action="/Add" method="POST">
-					<div class="row">
-						<div class="large-12 columns">
-							<div class="row">
-								<div class="large-4 columns">
-									<label for="left-label" class="left inline">Enter the url</label>
-								</div>
-								<div class="large-8 columns">
-									<input type="text" id="left-label" name="value_a" placeholder="">
-								</div>
-							</div>
 
-						
-
-							<div class="row">
-								<div class="large-4 columns">
-									<button class="button tiny radius success" type="submit" name="add">Sum-it-Up</button>
-								</div>
-								<div class="large-8 columns">
-									<textarea rows="15" cols="80" class="cobsession_token" name="sum">{{ sum1 }}</textarea>
-								</div>
-							</div>
-
-							<br />
-
-							<hr>
-							
-							<br />
-
-							<div class="row">
-								<div class="large-12 columns">
-								</div>
-							</div>
-						</div>
-					</div>
-				</form>
+				<div>We are trying to build an application which summarizes any news or web article dynamically.<br/><br/>
+We are creating an API which would receive the request with url of any article as a parameter and return the summarized text.
+<br/><br/>
+For user to use this service , we will be developing a chrome extension which can be installed from Chrome Web Store. This extension will be calling the API to get the summarized text. Once the extension is installed user can right-click of any anchor link of any news article or web article and get the summarized result on the same page.
+Today, most of the news link we get in our facebook feed by news pages on facebook.
+User can use this app to save time if he/she is not interested in the complete article.
+The user need not go in a new tab and read the complete article surrounded by annoying ads. <div>
 			</div>
 
 			<!-- Nav Sidebar -->
 			<!-- This is source ordered to be pulled to the left on larger screens -->
 			<div class="large-3 pull-9 columns">
 				<ul class="side-nav">
-					<li><a href="/">Home</a></li>
+					<li><a href="/"></a></li>
 				
 				</ul>
 			</div>

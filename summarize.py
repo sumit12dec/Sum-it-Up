@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+#heroku config:set BUILDPACK_URL=https://github.com/heroku/heroku-buildpack-python
 import nltk
 from nltk.corpus import stopwords
 import logging,json
