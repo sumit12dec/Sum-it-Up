@@ -20,10 +20,10 @@
 				<br />
 
 
-				<div>We are trying to build an application which summarizes any news or web article dynamically.<br/><br/>
-We are creating an API which would receive the request with url of any article as a parameter and return the summarized text.
+				<div>We have built an application which summarizes any news or web article dynamically.<br/><br/>
+We have created an API which receives the request with url of any article as a parameter and return the summarized text.
 <br/><br/>
-For user to use this service , we will be developing a chrome extension which can be installed from Chrome Web Store. This extension will be calling the API to get the summarized text. Once the extension is installed user can right-click of any anchor link of any news article or web article and get the summarized result on the same page.
+For user to use this service , we have developed a chrome extension which can be installed from Chrome Web Store. This extension will be calling the API to get the summarized text. Once the extension is installed user can right-click of any anchor link of any news article or web article and get the summarized result on the same page.
 Today, most of the news link we get in our facebook feed by news pages on facebook.
 User can use this app to save time if he/she is not interested in the complete article.
 The user need not go in a new tab and read the complete article surrounded by annoying ads. <div>
