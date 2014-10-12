@@ -33,5 +33,5 @@ def sum2(url):
     if len(summary)>5:
         summary = " ".join(summary[0:5])
     else: summary = " ".join(summary)
-    return u"Title: {0} <br/>Url: <a style='color:red;' target='_blank' href={1}>{1}</a><br/><br/>Summed Up:<br/>{2}<br><p style='float:right;color:rgb(86, 197, 51);font-size:11px;'>Report: <a style='color:rgb(86, 197, 51);' href='mailto:report@sumitraj.in?Subject={1}' target='_blank';>report@sumitraj.in</a></p><p style='color:black;'>Placeholder</p>".format(soup.title.text,url, summary)
+    return u"Title: {0} <br/>Url: <a style='color:red;' target='_blank' href={1}>{1}</a><br/><br/>Summed Up:<br/>{2}<br><p style='float:right;color:rgb(86, 197, 51);font-size:11px;'>Report: <a style='color:rgb(86, 197, 51);' href='mailto:report@sumitraj.in?Subject={1}' target='_blank';>Help us Improve</a></p><p style='color:black;'>Placeholder</p>".format(soup.title.text,url, summary)
 
